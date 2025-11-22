@@ -66,7 +66,7 @@ runParser p s = case parse p s of
 
 -- Failure (can be used to stop another parser)
 parseFailure :: Parser a
-parseFailure = Parser $ \_ -> []
+parseFailure = Parser $ const []
 
 -- Parses a single item
 parseItem :: Parser Char
@@ -93,7 +93,7 @@ parseChar c = parseIs (== c)
 
 -- Parses a single digit
 parseDigit :: Parser Char
-parseDigit = parseIs (isDigit)
+parseDigit = parseIs isDigit
 
 -- Parses the given string
 parseString :: String -> Parser String
@@ -109,7 +109,7 @@ parseCount 0 = pure []
 parseCount n = do
     c <- parseItem
     cs <- parseCount (n - 1)
-    return $ (c : cs)
+    return (c : cs)
 
 -- Parses an int
 parseInt :: Parser Int

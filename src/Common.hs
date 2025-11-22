@@ -9,4 +9,4 @@ evaluateAndPrint s m = do
     answer <- m
     endTime <- getCurrentTime
     let time = diffUTCTime endTime startTime
-    putStrLn $ s ++ " : " ++ (show answer) ++ " ; took " ++ (show time) ++ " to execute"
+    putStrLn $ s ++ " : " ++ show answer ++ " ; took " ++ show time ++ " to execute"
