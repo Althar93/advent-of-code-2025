@@ -59,6 +59,7 @@ common warnings
     ghc-options:
         -O2
         -Wall
+        -Wno-unused-top-binds
 
 executable advent-of-code2025
     import: warnings
@@ -66,6 +67,7 @@ executable advent-of-code2025
     other-modules:
         Common
         Day1
+        Day2
         Parser
 
     build-depends:

@@ -53,13 +53,13 @@ part2 yss = part2' 50 0 yss where
         n' = n + rotations x y 
 
 -- | Part 1 more compact & using 'scanl'
-part1' :: [Int] -> Int
-part1' yss = length $ filter (==0) xss where
+answer1 :: [Int] -> Int
+answer1 yss = length $ filter (==0) xss where
     xss = scanl (\x y -> (x + y) `mod` 100) 50 yss
    
 -- | Part 2 more compact & using 'scanl'
-part2' :: [Int] -> Int
-part2' yss = sum $ zipWith delta xss yss where
+answer2 :: [Int] -> Int
+answer2 yss = sum $ zipWith delta xss yss where
     xss = scanl (\x y -> (x + y) `mod` 100) 50 yss
     delta :: Int -> Int -> Int
     delta x y | y < 0     = ((100 - x) `mod` 100 - y) `div` 100
@@ -69,4 +69,4 @@ part2' yss = sum $ zipWith delta xss yss where
 answers :: IO [Int]
 answers = do
     input <- readInput inputFile
-    return [part1' input, part2' input]
+    return [answer1 input, answer2 input]
