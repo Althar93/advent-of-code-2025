@@ -33,21 +33,17 @@ expandRanges (x0,x1) = [x0..x1]
 -- | Answer for part 1
 answer1 :: [(Int, Int)] -> Int
 answer1 xs = sum $ invalids where
-    invalids  = filter (not . isValid) ranges 
+    invalids  = filter isValid ranges 
     ranges    = concatMap expandRanges xs
-    isValid x = (\(l,r) -> l /= r) $ splitAt (length x' `div` 2) x' where
+    isValid x = (\(l,r) -> l == r) $ splitAt (length x' `div` 2) x' where
         x' = show x
 
 -- | Answer for part 2
 answer2 :: [(Int, Int)] -> Int
 answer2 xs = sum $ invalids where
-    invalids  = filter isInvalid ranges
-    ranges    = concatMap expandRanges xs
-
--- Returns whether a number is invalid
-isInvalid :: Int -> Bool
-isInvalid n = n `elem` invalids where
-    invalids = map read [concat (replicate (length c `div` k) (take k c)) | let c = (show n), k <- [1..length c `div` 2]]
+    invalids    = filter isInvalid ranges
+    ranges      = concatMap expandRanges xs
+    isInvalid x = (show x) `elem` [concat (replicate (length c `div` k) (take k c)) | let c = (show x), k <- [1..length c `div` 2]]
 
 -- | Answers
 answers :: IO [Int]
