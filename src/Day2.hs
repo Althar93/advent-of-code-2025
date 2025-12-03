@@ -33,9 +33,9 @@ expandRanges (x0,x1) = [x0..x1]
 -- | Answer for part 1
 answer1 :: [(Int, Int)] -> Int
 answer1 xs = sum $ invalids where
-    invalids  = filter isValid ranges 
+    invalids  = filter isInvalid ranges 
     ranges    = concatMap expandRanges xs
-    isValid x = (\(l,r) -> l == r) $ splitAt (length x' `div` 2) x' where
+    isInvalid x = (\(l,r) -> l == r) $ splitAt (length x' `div` 2) x' where
         x' = show x
 
 -- | Answer for part 2
