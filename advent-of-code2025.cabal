@@ -60,6 +60,7 @@ common warnings
         -O2
         -Wall
         -Wno-unused-top-binds
+        -Wno-x-partial
 
 executable advent-of-code2025
     import: warnings
@@ -69,6 +70,7 @@ executable advent-of-code2025
         Day1
         Day2
         Day3
+        Day4
         Parser
 
     build-depends:
