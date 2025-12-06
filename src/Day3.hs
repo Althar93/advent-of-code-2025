@@ -35,8 +35,7 @@ maxJoltageR :: Int -> [Int] -> Int
 maxJoltageR k b = sum $ zipWith (\n i -> n * 10^i) ls [k-1, k-2..0] where 
     ls = maxJoltageR' k 0
     maxJoltageR' 0  _ = []
-    maxJoltageR' k' i | show rb ++ " : " ++ show (n, i')
-                      | otherwise = n : maxJoltageR' (k' - 1) (i' + 1 + length lb) where
+    maxJoltageR' k' i = n : maxJoltageR' (k' - 1) (i' + 1 + length lb) where
         (n, i')  = localMaximum (dropTail (k' - 1) rb)
         (lb, rb) = splitAt i b
 

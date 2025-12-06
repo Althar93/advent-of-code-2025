@@ -37,15 +37,16 @@ readInput file = do
 
 -- | Answer to part 1
 answer1 :: ([(Int, Int)], [Int]) -> Int
-answer1 (rs, as) = length $ filter (\a -> any id (map (\(xm, xM) -> a >= xm && a <= xM) rs)) as
+answer1 (rs, as) = length $ filter (\a -> any (\(xm, xM) -> a >= xm && a <= xM) rs) as
 
 -- | Merges ranges together
 mergeRange :: [(Int,Int)] -> [(Int,Int)]
 mergeRange []               = []
-mergeRange ((xm,xM):(ym,yM):rs) | ym >= xm && yM <= xM            = mergeRange ((xm,xM):rs)         -- Fully contained
-                                | ym >= xm && ym <= xM && yM > xM = mergeRange ((xm,yM):rs)         -- Extend range (y)
-                                | xm >= ym && xm <= yM && xM > yM = mergeRange ((ym,xM):rs)         -- Extend range (x)
-                                | otherwise                       = (xm,xM):mergeRange ((ym,yM):rs) -- Continue 
+mergeRange ((xm,xM):(ym,yM):rs)
+    | ym >= xm && yM <= xM            = mergeRange ((xm,xM):rs)         -- Fully contained
+    | ym >= xm && ym <= xM && yM > xM = mergeRange ((xm,yM):rs)         -- Extend range (y)
+    | xm >= ym && xm <= yM && xM > yM = mergeRange ((ym,xM):rs)         -- Extend range (x)
+    | otherwise                       = (xm,xM):mergeRange ((ym,yM):rs) -- Continue 
 mergeRange x = x
 
 -- | Merges range together recursively

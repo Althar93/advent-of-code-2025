@@ -60,6 +60,7 @@ common warnings
         -O2
         -Wall
         -Wno-unused-top-binds
+        -Wno-unused-imports
         -Wno-x-partial
 
 executable advent-of-code2025
