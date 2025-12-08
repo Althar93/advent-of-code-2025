@@ -74,6 +74,8 @@ executable advent-of-code2025
         Day4
         Day5
         Day6
+        Day7
+        Day8
         Parser
 
     build-depends:
