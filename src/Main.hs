@@ -19,5 +19,5 @@ main = do
     --evaluateAndPrint "Day 4" Day4.answers
     --evaluateAndPrint "Day 5" Day5.answers
     --evaluateAndPrint "Day 6" Day6.answers
-    evaluateAndPrint "Day 7" Day7.answers
-    --evaluateAndPrint "Day 8" Day8.answers
+    --evaluateAndPrint "Day 7" Day7.answers
+    evaluateAndPrint "Day 8" Day8.answers
